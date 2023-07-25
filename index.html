@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Sparks N Sizzles</title>
+    <link rel="icon" href="./logo.png" type="image/png" sizes="16x16">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #52f1e6, #68a9e9, pink, rgb(230, 87, 156));
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.3); 
+            backdrop-filter: blur(8px); 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+        }
+
+        .style-1 {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+        }
+
+        .style-2 {
+            fill: white;
+            width: 100%;
+            height: 100%;
+        }
+
+        #menu {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        #menu a {
+            display: block;
+            color: #333;
+            font-size: 18px;
+            padding: 10px 0;
+            text-decoration: none;
+        }
+
+        #menu a:hover {
+            color: #52f1e6;
+            opacity: 0.88;
+        }
+
+        .close-menu-btn {
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fas.fa-times {
+            color: #333;
+            font-size: 20px;
+        }
+
+        .fas.fa-times:hover {
+            color: #52f1e6;
+            opacity: 0.88;
+        }
+
+        .style-9 {
+            width: 300px;
+            left: auto;
+            right: auto;
+            left: auto;
+            right: auto;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        .style-10 {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            margin-top: 20px;
+            max-width: 100%;
+            display: inline-block;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+        .style-11 {
+            display: block;
+            width: 240px;
+            height: auto;
+            margin-top: 5px;
+            margin-right: auto;
+            margin-left: auto;
+            background-color: rgba(0, 0, 0, 0);
+            max-width: 100%;
+            vertical-align: middle;
+            box-sizing: border-box;
+            border: 0px none rgb(0, 0, 238);
+        }
+    </style>
+    
+</head>
+<body>
+
+    <button class="style-1" id="menuButton">
+        <svg viewBox="0 0 20 15" version="1.1" xmlns="http://www.w3.org/2000/svg" class="style-2">
+            <title class="style-3">Open Menu</title>
+            <path d="M19.987,1.999 C19.202,1.994 18.825,1.621 18.351,1.146 C17.84,0.636 17.203,0 15.995,0 C14.787,0 14.151,0.636 13.639,1.147 C13.162,1.624 12.785,2 11.991,2 C11.198,2 10.822,1.624 10.345,1.147 C9.835,0.636 9.199,0 7.993,0 C6.786,0 6.151,0.636 5.641,1.147 C5.164,1.624 4.788,2 3.996,2 C3.204,2 2.828,1.624 2.351,1.147 C1.841,0.636 1.206,0 -4.13891144e-13,0 L-4.13891144e-13,1 C0.792,1 1.168,1.377 1.644,1.854 C2.154,2.365 2.79,3 3.996,3 C5.202,3 5.838,2.365 6.348,1.854 C6.824,1.377 7.201,1 7.993,1 C8.785,1 9.162,1.377 9.638,1.854 C10.149,2.365 10.784,3 11.991,3 C13.199,3 13.835,2.365 14.346,1.854 C14.824,1.377 15.201,1 15.995,1 C16.789,1 17.166,1.377 17.644,1.854 C18.153,2.363 18.788,2.995 19.987,2.999 L19.987,1.999 Z" class="style-4"></path>
+            <path d="M19.987,7.999 C19.202,7.994 18.825,7.621 18.351,7.146 C17.84,6.636 17.203,6 15.995,6 C14.787,6 14.151,6.636 13.639,7.147 C13.162,7.624 12.785,8 11.991,8 C11.198,8 10.822,7.624 10.345,7.147 C9.835,6.636 9.199,6 7.993,6 C6.786,6 6.151,6.636 5.641,7.147 C5.164,7.624 4.788,8 3.996,8 C3.204,8 2.828,7.624 2.351,7.147 C1.841,6.636 1.206,6 2.31459296e-12,6 L2.31459296e-12,7 C0.792,7 1.168,7.377 1.644,7.854 C2.154,8.365 2.79,9 3.996,9 C5.202,9 5.838,8.365 6.348,7.854 C6.824,7.377 7.201,7 7.993,7 C8.785,7 9.162,7.377 9.638,7.854 C10.149,8.365 10.784,9 11.991,9 C13.199,9 13.835,8.365 14.346,7.854 C14.824,7.377 15.201,7 15.995,7 C16.789,7 17.166,7.377 17.644,7.854 C18.153,8.363 18.788,8.995 19.987,8.999 L19.987,7.999 Z" class="style-5"></path>
+            <path d="M19.987,13.999 C19.202,13.994 18.825,13.621 18.351,13.146 C17.84,12.636 17.203,12 15.995,12 C14.787,12 14.151,12.636 13.639,13.147 C13.162,13.624 12.785,14 11.991,14 C11.198,14 10.822,13.624 10.345,13.147 C9.835,12.636 9.199,12 7.993,12 C6.786,12 6.151,12.636 5.641,13.147 C5.164,13.624 4.788,14 3.996,14 C3.204,14 2.828,13.624 2.351,13.147 C1.841,12.636 1.206,12 2.31459296e-12,12 L2.31459296e-12,13 C0.792,13 1.168,13.377 1.644,13.854 C2.154,14.365 2.79,15 3.996,15 C5.202,15 5.838,14.365 6.348,13.854 C6.824,13.377 7.201,13 7.993,13 C8.785,13 9.162,13.377 9.638,13.854 C10.149,14.365 10.784,15 11.991,15 C13.199,15 13.835,14.365 14.346,13.854 C14.824,13.377 15.201,13 15.995,13 C16.789,13 17.166,13.377 17.644,13.854 C18.153,14.363 18.788,14.995 19.987,14.999 L19.987,13.999 Z" class="style-6"></path>
+        </svg>
+    </button>
+
+    <div class="style-9">
+        <a href="https://aarnav1729.github.io/SnSLandingPage/" target="_blank" aria-current="page" class="style-10">
+            <img src="./logo.png" alt="logo" class="style-11" /> 
+        </a>
+    </div>
+
+    <section id="Projects"
+        class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n1.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n2.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n3.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n4.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n5.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n6.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n7.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n8.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n9.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n10.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n11.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n12.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n13.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n14.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n15.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n16.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n17.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n18.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n19.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n20.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n21.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n22.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n23.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n24.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n25.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n26.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n27.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n28.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n29.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n30.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n31.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n32.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n33.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n34.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n35.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n36.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n37.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n38.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n39.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="w-72 glass-card shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+            <a href="#">
+                <img src="./n40.jpg"
+                    alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
+                <div class="px-4 py-3 w-72">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-black cursor-auto my-3">&#8377;1490</p>
+                        <del>
+                            <p class="text-sm text-gray-600 cursor-auto ml-2">&#8377;1999</p>
+                        </del>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+    </section>
+
+    <div id="menu" class="hidden">
+
+        <button class="close-menu-btn">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <a href="https://aarnav1729.github.io/SnSLandingPage/" target="_blank">Home</a>
+        <a href="https://aarnav1729.github.io/SnSRakhi2k23/">Rakhis</a>
+        <a href="#">Necklaces</a>
+        <a href="#">Earrings</a>
+        <a href="#">Nighties</a>
+        <a href="#">Bracelets</a>
+    </div>
+
+    <script>
+    // Add an event listener to the menu button
+    document.getElementById("menuButton").addEventListener("click", toggleMenu);
+
+    // Add an event listener to the close menu button (X icon)
+    document.querySelector(".close-menu-btn").addEventListener("click", toggleMenu);
+
+    // Function to toggle the menu visibility
+    function toggleMenu() {
+        const menu = document.getElementById("menu");
+        menu.classList.toggle("hidden");
+    }
+    </script>
+
+</body>
+</html>
